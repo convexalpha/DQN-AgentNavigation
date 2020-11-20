@@ -27,32 +27,36 @@ class Agent():
         self.action_size = action_size
         self.seed = random.seed(seed)
 
-        # Q-Network
+        # Q-Network(Local and Target Q Networks)
         self.qnetwork_local = QNetwork(state_size, action_size, seed).to(device)
         self.qnetwork_target = QNetwork(state_size, action_size, seed).to(device)
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
 
         # Replay memory
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, seed)
-        # Initialize time step (for updating every UPDATE_EVERY steps)
+        
+        # Initialize time step
         self.t_step = 0
     
     def step(self, state, action, reward, next_state, done):
-        # Save experience in replay memory
+        
+        # Save experience in memory
         self.memory.add(state, action, reward, next_state, done)
         
         # Learn every UPDATE_EVERY time steps.
         self.t_step = (self.t_step + 1) % UPDATE_EVERY
         if self.t_step == 0:
-            # If enough samples are available in memory, get random subset and learn
+            
+            # If samples are enough, take random sample and learn from it
             if len(self.memory) > BATCH_SIZE:
                 experiences = self.memory.sample()
                 self.learn(experiences, GAMMA)
 
     def act(self, state, eps=0.):
-        """Returns actions for given state as per current policy.
-        """
+       # Returns actions for given state as per current policy.
+        
         state = torch.from_numpy(state).float().unsqueeze(0).to(device)
+        
         # Choose action values according to local model
         self.qnetwork_local.eval()
         with torch.no_grad():
@@ -66,16 +70,16 @@ class Agent():
             return random.choice(np.arange(self.action_size))
 
     def learn(self, experiences, gamma):
-        """Update value parameters using given batch of experience tuples.
-        """
+        # Update value parameters using given batch of experience tuples.
         
         states, actions, rewards, next_states, dones = experiences
         
-        # Get max predicted actions (for next states) from local model
+        # Get max predicted actions from local model
         next_local_actions = self.qnetwork_local(next_states).max(1)[1].unsqueeze(1)
+        
         # Evaluate the max predicted actions from the local model on the target model
-        # based on Double DQN
         Q_targets_next_values = self.qnetwork_target(next_states).detach().gather(1, next_local_actions)
+        
         # Compute Q targets for current states 
         Q_targets = rewards + (gamma * Q_targets_next_values * (1 - dones))
 
@@ -90,22 +94,22 @@ class Agent():
         loss.backward()
         self.optimizer.step()
 
-        # ------------------- update target network ------------------- #
+        # Update target network 
         self.soft_update(self.qnetwork_local, self.qnetwork_target, TAU)                     
 
     def soft_update(self, local_model, target_model, tau):
-        """Soft update model parameters.
-        """
+        #Soft Updation
+
         for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
             target_param.data.copy_(tau*local_param.data + (1.0-tau)*target_param.data)
 
 
 class ReplayBuffer:
-    """Fixed-size buffer to store experience objects."""
+    #Fixed-size buffer to store experience objects
 
     def __init__(self, action_size, buffer_size, batch_size, seed):
-        """Initialize a ReplayBuffer object.
-        """
+        #Initialize a ReplayBuffer object.
+        
         self.action_size = action_size
         self.memory = deque(maxlen=buffer_size)  
         self.batch_size = batch_size
@@ -113,15 +117,13 @@ class ReplayBuffer:
         self.seed = random.seed(seed)
     
     def add(self, state, action, reward, next_state, done):
-        """Add a new experience to memory."""
+        #Add a new experience to memory.
         e = self.experience(state, action, reward, next_state, done)
         self.memory.append(e)
     
     def sample(self):
-        """Sample a batch of experiences from memory.
-           Return indexes of sampled experiences in order to update their
-           priorities after learning from them.
-        """
+        #Sample a batch of experiences from memory.
+        
         experiences = random.sample(self.memory, k=self.batch_size)
 
         states = torch.from_numpy(np.vstack([e.state for e in experiences if e is not None])).float().to(device)
@@ -133,5 +135,5 @@ class ReplayBuffer:
         return states, actions, rewards, next_states, dones
 
     def __len__(self):
-        """Return the current size of internal memory."""
+        #Return the current size of internal memory.
         return len(self.memory)
