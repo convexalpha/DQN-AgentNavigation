@@ -11,9 +11,9 @@ from collections import namedtuple, deque
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 64         # minibatch size
 GAMMA = 0.99            # discount factor
-TAU = 1e-3              # for soft update of target parameters
+TAU = 1e-3              # soft updation
 LR = 5e-4               # learning rate 
-UPDATE_EVERY = 4        # how often to update the network
+UPDATE_EVERY = 4        # update frequency
 
 device = torch.device('cpu')
 
@@ -22,12 +22,6 @@ class Agent():
 
     def __init__(self, state_size, action_size, seed):
         """Initialize an Agent object.
-        
-        Params
-        ======
-            state_size (int): dimension of each state
-            action_size (int): dimension of each action
-            seed (int): random seed
         """
         self.state_size = state_size
         self.action_size = action_size
@@ -57,11 +51,6 @@ class Agent():
 
     def act(self, state, eps=0.):
         """Returns actions for given state as per current policy.
-        
-        Params
-        ======
-            state (array_like): current state
-            eps (float): epsilon, for epsilon-greedy action selection
         """
         state = torch.from_numpy(state).float().unsqueeze(0).to(device)
         # Choose action values according to local model
@@ -78,11 +67,6 @@ class Agent():
 
     def learn(self, experiences, gamma):
         """Update value parameters using given batch of experience tuples.
-
-        Params
-        ======
-            experiences (Tuple[torch.Variable]): tuple of (s, a, r, s', done) tuples 
-            gamma (float): discount factor
         """
         
         states, actions, rewards, next_states, dones = experiences
@@ -111,13 +95,6 @@ class Agent():
 
     def soft_update(self, local_model, target_model, tau):
         """Soft update model parameters.
-        θ_target = τ*θ_local + (1 - τ)*θ_target
-
-        Params
-        ======
-            local_model (PyTorch model): weights will be copied from
-            target_model (PyTorch model): weights will be copied to
-            tau (float): interpolation parameter 
         """
         for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
             target_param.data.copy_(tau*local_param.data + (1.0-tau)*target_param.data)
@@ -128,13 +105,6 @@ class ReplayBuffer:
 
     def __init__(self, action_size, buffer_size, batch_size, seed):
         """Initialize a ReplayBuffer object.
-
-        Params
-        ======
-            action_size (int): dimension of each action
-            buffer_size (int): maximum size of buffer
-            batch_size (int): size of each training batch
-            seed (int): random seed
         """
         self.action_size = action_size
         self.memory = deque(maxlen=buffer_size)  
@@ -148,7 +118,7 @@ class ReplayBuffer:
         self.memory.append(e)
     
     def sample(self):
-        """Sample a batch of experiences from memory based on TD Error priority.
+        """Sample a batch of experiences from memory.
            Return indexes of sampled experiences in order to update their
            priorities after learning from them.
         """
