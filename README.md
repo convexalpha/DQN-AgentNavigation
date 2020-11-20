@@ -4,10 +4,6 @@ A Deep Q-Learning Network trained for solving an environment navigation problem 
 #### DQN Improvement Used
 Double Q Network
 
-[video_random]:https://github.com/convexalpha/DQN-AgentNavigation/tree/main/assets/randomagentgif.gif "Random Agent"
-
-[video_trained]: https://github.com/convexalpha/DQN-AgentNavigation/tree/main/assets/samplegif.gif "Trained Agent"
-
 ### Environment Details
 
 The goal of this environment is to train an agent to navigate and collect bananas in a large, square world.
@@ -23,7 +19,7 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 | Random agent             |  Trained agent |
 :-------------------------:|:-------------------------:
-![Random Agent][video_random]  |  ![Trained Agent][video_trained]
+![alt-text](https://github.com/convexalpha/DQN-AgentNavigation/blob/main/assets/randomagentgif.gif)  |  ![alt-text](https://github.com/convexalpha/DQN-AgentNavigation/blob/main/assets/samplegif.gif)  
 
 The task is episodic, and in order to solve the environment, the agent must get an average score of +13 over 100 consecutive episodes.
 
