@@ -11,8 +11,6 @@ The learning algorithm used was a Double Deep Q Network, it is an advancement of
 ### Q-Learning
 It uses a basic learning strategy which involves selecting an action which would eventually yield the highest cumulative reward. These types of algorithms are hence called greedy algorithms 
 
-![eqn1](assets/eqn1.png)
-
 Then we draw a table of all the Q-Values and update it using the Bellman Equation
 
 ![eqn2](assets/eqn2.png)
