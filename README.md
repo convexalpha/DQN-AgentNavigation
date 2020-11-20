@@ -48,7 +48,7 @@ env = env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe")
     PyTorch
     Numpy
     Matplotlib
-    Jupyter (Optional, python files are provided if you wish to run from command line)
+    Jupyter 
     
 ## Running
 Run the cells in the notebook `Navigation.ipynb` to train an agent that solves our required
