@@ -52,7 +52,7 @@ where θ’ is the target network parameter, θ is the primary network parameter
   | Epsilon decay                       | 0.995 |
 
 
-  #Plot of Rewards
+  # Plot of Rewards
 
   The trained agent can be seen in action below:
 
