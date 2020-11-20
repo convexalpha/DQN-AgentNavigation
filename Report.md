@@ -36,13 +36,14 @@ We minimize the mean squared error between Q and Q* , but we have Q' slowly copy
 where θ’ is the target network parameter, θ is the primary network parameter, and τ (rate of averaging) is usually set to 0.01
 
   ### Hyperparameters
+  The model used had two fully connected layers with 128 neurons and Relu activation function to choose actions corresponding to maximum Q values.
 
   | Hyperparameter                      | Value |
   | ----------------------------------- | ----- |
   | Replay buffer size                  | 1e5   |
   | Batch size                          | 64    |
-  | $\gamma$ (discount factor)          | 0.99  |
-  | $\tau$                              | 1e-3  |
+  | gamma (discount factor)             | 0.99  |
+  | tau                                 | 1e-3  |
   | Learning rate                       | 5e-4  |
   | update interval                     | 4     |
   | Number of episodes                  | 500   |
