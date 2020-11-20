@@ -56,7 +56,7 @@ where θ’ is the target network parameter, θ is the primary network parameter
 
   The trained agent can be seen in action below:
 
-  ![trained](assests/samplegif.gif) 
+  ![trained](assets/samplegif.gif) 
 
 
   The performance achieved by **Double DQN** where the reward of +13 was achieved in **473** episodes is plotted as follows: 
