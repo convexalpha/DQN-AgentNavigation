@@ -27,8 +27,6 @@ The solution involves using two separate Q-value estimators, each of which is us
 
 In the Double Q-learning algorithm, we have a model Q and a target model Q’. We use the Q’ for action selection and Q for action evaluation
 
-We minimize the mean squared error between Q and Q* , but we have Q' slowly copy the parameters of Q
-
 ![eqn5](assets/eqn5.png)
 
 where θ’ is the target network parameter, θ is the primary network parameter, and τ (rate of averaging) is usually set to 0.01
