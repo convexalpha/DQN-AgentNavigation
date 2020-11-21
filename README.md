@@ -19,7 +19,7 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 | Random agent             |  Trained agent |
 :-------------------------:|:-------------------------:
-![alt-text](https://github.com/convexalpha/DQN-AgentNavigation/blob/main/assets/randomagentgif.gif)  |  ![alt-text](https://github.com/convexalpha/DQN-AgentNavigation/blob/main/assets/samplegif.gif)  
+![alt-text](assets/randomagentgif.gif)  |  ![alt-text](assets/samplegif.gif)  
 
 The task is episodic, and in order to solve the environment, the agent must get an average score of +13 over 100 consecutive episodes.
 
