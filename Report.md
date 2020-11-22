@@ -67,4 +67,4 @@ where θ’ is the target network parameter, θ is the primary network parameter
 
 - Further Hyperparamter tweaking can also lead to much better performance and/or efficiency.
 
-Author: **Vihaan Misra**
+Author: [Vihaan Misra](https://github.com/convexalpha)
