@@ -1,6 +1,6 @@
 # Navigation Project
 
-This project demonstrates the use of value-based reinforcement learning methods to help navigate an agent in a virtual environment. Deep Q learning was used as the base algorithm and was improved using the Double-Q Network algortihm so as to stabilize the learning process. The environment was provided by Unity, wherein the agent has to navigate a virtual space and receives a reward of +1 for collecting a yellow banana and a reward of -1 for a blue banana. The agent has available with it 4 actions, to move forwards, rightwards, leftwards and backwards.
+This project demonstrates the use of value-based reinforcement learning methods to help navigate an agent in a virtual environment. Deep Q learning was used as the base algorithm and was improved using the Double-Q Network algorithm so as to stabilize the learning process. The environment was provided by Unity, wherein the agent has to navigate a virtual space and receives a reward of +1 for collecting a yellow banana and a reward of -1 for a blue banana. The agent has available with it 4 actions, to move forwards, rightwards, leftwards and backwards.
 
 ![random agent](assets/randomagentgif.gif) 
 
