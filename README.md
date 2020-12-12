@@ -39,7 +39,7 @@ The task is episodic, and in order to solve the environment, the agent must get 
 2. Place the file in this folder, unzip (or decompress) the file and then write the correct path in the argument for creating the environment under the notebook `Navigation.ipynb`:
 
 ```python
-env = env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe")
+env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe")
 
 ```
 #### Required Dependencies:
